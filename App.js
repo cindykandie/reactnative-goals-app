@@ -1,11 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>I am smart! this is exciting!</Text>
-      <StatusBar style="auto" />
+      <View style={styles.todoContainer}>
+        <TextInput style={styles.todoInput} placeholder='Your Goals'/>
+        <Button style={styles.todoSubmit}  title='Add Goal'/>
+      </View>
+      <View>
+        <Text style={styles.todoText}>List goes here...</Text>
+      </View>
     </View>
   );
 }
@@ -13,8 +18,41 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    gap: 20,
+    backgroundColor: '#1b263b',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  todoContainer: {
+    flexDirection: 'row',
+    gap: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: 'white',
+    paddingBottom: 15
+  },
+  todoInput: {
+    borderWidth: 2,
+    borderRadius: 30,
+    width: '50%',
+    padding: 8,
+    borderColor: 'white',
+    color: 'white'
+  },
+  todoSubmit: {
+    alignItems: 'center',
+    justifyContent: 'center', 
+    padding: 6,
+
+  },
+  todoText: 
+    {
+      margin: 20, 
+      borderColor: 'yellow', 
+      borderBottomWidth: 2, 
+      padding: 5, 
+      borderRadius: 5, 
+      color: 'white',
+      fontSize: 20
+    }
+  
 });
