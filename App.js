@@ -1,15 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
+  const [enteredGoalText, setEnteredGoalText] = useState('')
+  const [courseGoals, setCourseGoals] = useState([])
+
+  function goalInputHandler(enteredText){
+    setEnteredGoalText(enteredText)
+  }
+  function addGoalHandler(){
+    // console.log(enteredGoalText)
+    setCourseGoals(currentGoals => [...currentGoals, enteredGoalText])
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.todoContainer}>
-        <TextInput style={styles.todoInput} placeholder='Your Goals'/>
-        <Button style={styles.todoSubmit}  title='Add Goal'/>
+        <TextInput style={styles.todoInput} placeholder='Your Goals' onChangeText={goalInputHandler}/>
+        <Button style={styles.todoSubmit}  title='Add Goal' onPress={addGoalHandler}/>
       </View>
       <View>
-        <Text style={styles.todoText}>List goes here...</Text>
+       
+        {courseGoals.map((goal)=> <Text style={styles.todoText} key={goal+ Math.random()}>- {goal}</Text>)}
       </View>
     </View>
   );
@@ -46,13 +58,13 @@ const styles = StyleSheet.create({
   },
   todoText: 
     {
-      margin: 20, 
-      borderColor: 'yellow', 
-      borderBottomWidth: 2, 
-      padding: 5, 
-      borderRadius: 5, 
+      margin: 5, 
+      borderColor: 'green', 
+      borderBottomWidth: 1, 
+      padding: 2, 
       color: 'white',
-      fontSize: 20
+      fontSize: 20,
+      width: '100%'
     }
   
 });
